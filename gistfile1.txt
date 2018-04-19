@@ -1,0 +1,30 @@
+#include <iostream> 
+#include <math.h>
+using namespace std; 
+
+int main() { 
+	int number; 
+	cin >> number;
+	int price[number];
+	int total = 0;
+	for (int i = 0; i < number; i++) {
+		cin >> price[i];
+		total = total + price[i];
+	}
+	
+	int list[number * (number-1) / 2][number];
+	int change = 2;
+	int save = 1;
+	for (int i = 0; i < number * (number-1) / 2; i++) {
+		for (int j = 0; j < number; j++) {
+			list[i][j] = save; 
+		}
+		change *
+	}
+	
+	
+
+	
+	
+ return 0; 
+}
