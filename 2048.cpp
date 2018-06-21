@@ -57,17 +57,19 @@ int newNum(){
 	
 }
 int up(){
-	for(int i = 0; i < 4; i++){
-		for(int l = 0; l < 4; l++){
-			if(block[l][i] != 0 && (l - 1) > 0){
-				
-				if(block[l-1][i] == 0)){
-					block[l-1][i] = block[l][i];
-					block[l][i] = 0;
-				}
-			}
-		}
-	}
+	
+
+}
+int down(){
+	
+
+}
+int right(){
+	
+
+}
+int left(){
+	
 
 }
 
