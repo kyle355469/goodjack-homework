@@ -11,7 +11,7 @@
 using namespace std;
 //int gotoxy(int,int);
 void newNum();      // 生成新數字 
-void up();			// 上 
+void up();	    // 上 
 void down();        // 下 
 void right();       // 右 
 void left();        // 左 
