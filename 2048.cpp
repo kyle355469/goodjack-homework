@@ -9,74 +9,110 @@
 #define RIGHT 77
 #define DIRECTION 224
 using namespace std;
-void gotoxy(int,int);
-int newNum();
-int up();
-int down();
-int right();
-int left()
+//int gotoxy(int,int);
+void newNum();      // 生成新數字 
+void up();			// 上 
+void down();        // 下 
+void right();       // 右 
+void left();        // 左 
 int block[4][4] = {0};
-
+int checkblock[4][4] = {0};
+void copy();        // 複製到 checkbolock  
+void newnum();
+void sign();
+int win();
 int main(){
 	int key;
+	checkblock[0][0] = 1;
+	newnum();
+	copy();
 	while(key = getch()){	
 		if(key == DIRECTION){
 		
 			switch(key = getch()){
 				case UP:
-					
+					up();
+					break;
 				case DOWN:
-					
+					down();
+					break;
 				case RIGHT:
-					
+					right();
+					break;
 				case LEFT:
-					
+					left();
+					break;
 			}
 		}
+		newnum();
+		
 			
 	}
 	
 	return 0;
 }
 
-int newNum(){
-	srand((unsigned)time(NULL));
-	int x,y;
-	int p = 1;
-	x = rand() % 4;
-	y = rand() % 4;
-	while(p = 1){
-		if(block[y][x] = 0){
-			block[y][x] = 2;
-		}else{
-			x = rand() % 4;
-			y = rand() % 4;
+void newnum() {
+    bool check=0;
+    for (int x=0;x<4;x++) {
+        for (int y=0;y<4;y++) {
+            if (checkblock[x][y]!=block[x][y]) {
+                check=1;
+            }
+        }
+    }
+    if (check){
+        srand((unsigned)time(NULL));
+        while(1){
+            int all=rand()%16;
+            int x=all/4;
+            int y=all%4;
+            if (block[x][y]>0) {
+                continue;
+            }else{
+                block[x][y]=2;
+                break;
+            }
+        }
+    }
+}
+void copy(){
+	for(int i=0;i<4;i++){
+		for(int l=0;l<4;i++){
+			checkblock[i][l] = block[i][l];
 		}
-		
 	}
 	
 }
-int up(){
+void sign(){
+	for (int x = 0; x < 4; x++) {
+        for (int y = 0; y < 4; y++) {
+            cout << setw(5) << list[x][y];
+        }
+        cout << endl;
+    }
+}
+void up(){
 	
 
 }
-int down(){
+void down(){
 	
 
 }
-int right(){
+void right(){
 	
 
 }
-int left(){
+void left(){
 	
 
 }
 
-void gotoxy(int xpos, int ypos)
+/*void gotoxy(int xpos, int ypos)
 {
   COORD scrn;
   HANDLE hOuput = GetStdHandle(STD_OUTPUT_HANDLE);
   scrn.X = xpos; scrn.Y = ypos;
   SetConsoleCursorPosition(hOuput,scrn);
-}
+}  */
