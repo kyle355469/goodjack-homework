@@ -52,7 +52,6 @@ int main(){
 					left();
 					break;
 			}
-			newnum();
 			Align_display();
 			judgment = win();
 			if(judgment == 0){
@@ -102,6 +101,8 @@ void copy(){
     }	
 }
 void up(){
+	int add = 0;
+	copy();
 	for(int time = 0; time < 3; time++){
 		for(int x = 0; x < 3; x++){
 			for(int y = 0; y < 4; y++){
@@ -130,16 +131,22 @@ void up(){
 			}
 		}
 	}
-	for(int x = 0; x < 3; x++){
+	
+	for(int x = 0; x < 4; x++){
 		for(int y = 0; y < 4; y++){
-			if(block[x+1][y] == block[x][y]){
-				block[x][y] += block[x+1][y];
-				block[x+1][y] = 0; 
-			}
+			if(checkblock[x][y] != block[x][y]){
+				add += 1;
+	     		break;
+			}	
 		}
+	}
+	if(add != 0){
+		newnum();
 	}
 }
 void down(){
+	int add = 0;
+	copy();
 	for(int time = 0; time < 3; time++){
 		for(int x = 3; x > 0; x--){
 			for(int y = 0; y < 4; y++){
@@ -168,17 +175,21 @@ void down(){
 			}
 		}
 	}
-	for(int x = 3; x > 0; x--){
+	for(int x = 0; x < 4; x++){
 		for(int y = 0; y < 4; y++){
-			if(block[x][y] == block[x-1][y]){
-				block[x][y] += block[x-1][y];
-				block[x-1][y] = 0; 
-			}
+			if(checkblock[x][y] != block[x][y]){
+				add += 1;
+	     		break;
+			}	
 		}
 	}
-
+	if(add != 0){
+		newnum();
+	}
 }
 void right(){
+	int add = 0;
+	copy();
 	for(int time = 0; time < 3; time++){
 		for(int x = 0; x < 4; x++){
 			for(int y = 3; y > 0; y--){
@@ -208,16 +219,20 @@ void right(){
 		}
 	}
 	for(int x = 0; x < 4; x++){
-		for(int y = 3; y > 0; y--){
-			if(block[x][y] == block[x][y-1]){
-				block[x][y] += block[x][y-1];
-				block[x][y-1] = 0; 
-			}
+		for(int y = 0; y < 4; y++){
+			if(checkblock[x][y] != block[x][y]){
+				add += 1;
+	     		break;
+			}	
 		}
 	}
-
+	if(add != 0){
+		newnum();
+	}
 }
 void left(){
+	int add = 0;
+	copy();
 	for(int time = 0; time < 3; time++){
 		for(int x = 0; x < 4; x++){
 			for(int y = 0; y < 3; y++){
@@ -247,14 +262,16 @@ void left(){
 		}
 	}
 	for(int x = 0; x < 4; x++){
-		for(int y = 0; y < 3; y++){
-			if(block[x][y] == block[x][y+1]){
-				block[x][y] += block[x][y+1];
-				block[x][y+1] = 0; 
-			}
+		for(int y = 0; y < 4; y++){
+			if(checkblock[x][y] != block[x][y]){
+				add += 1;
+	     		break;
+			}	
 		}
 	}
-
+	if(add != 0){
+		newnum();
+	}
 }
 int win(){
 	int full = 1;          // 0未滿 1滿 
@@ -273,8 +290,6 @@ int win(){
 					return 0;
 				}else if(full == 1){
 					return 1;
-				}else{
-					return 3;
 				}	
 			}
 		}
