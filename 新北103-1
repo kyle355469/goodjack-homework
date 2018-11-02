@@ -1,0 +1,47 @@
+#include <iostream>
+
+using namespace std;
+
+int main(){
+	int x, y;
+	cin >> x >> y;
+	int map[y][x];
+	int start[2];
+	int fin[2];
+	for(int i = 0; i < y; i++){
+		for(int l = 0; l < x; l++){
+			map[i][l] = 0;
+		}
+	}
+	for(int i = 0; i < 2; i++){
+		cin >> start[i];
+	}
+	for(int i = 0; i < 2; i++){
+		cin >> fin[i];
+	}
+	int times;
+	cin >> times;
+	int range[times];
+	for(int i = 0; i < times; i++){
+		cin >> range[i];
+	}
+	map[start[1]][start[0]] = 1;
+	map[fin[1]][fin[0]] = 2;
+	for(int i = 0; i < y; i++){
+		for(int l = 0; l < x; l++){
+			cout << map[i][l] << " ";
+		}
+		cout << endl;
+	}
+	cout << endl;
+	
+	
+	int step[2] = {start[0] - fin[0] , start[1] - fin[1]};
+	for(int i = 0; i < 2; i++){
+		if(step[i] < 0){
+			step[i] *= -1;
+		}
+	}
+	cout << "x = " << step[0] << endl << "y = " << step[1] << endl;
+	return 0;
+}
