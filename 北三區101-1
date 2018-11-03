@@ -1,0 +1,37 @@
+#include <iostream>
+#include <math.h>
+
+using namespace std;
+int main(){
+	int n, m;
+	cin >> n >> m;
+	float seat[2][m] = {0};
+	for(int i = 0; i < m; i++){
+		for(int l = 0; l < 2; l++){
+			cin >> seat[l][i];
+		}
+	} 
+	float close = 0;
+	float now;
+	for(int i = 0; i < m; i++){
+		for(int l = i + 1; l < m; l++){
+			now = pow(pow((seat[1][l] - seat[1][i]), 2) + pow((seat[0][l] - seat[0][i]) , 2), 0.5);
+			if(close == 0){
+				close = now;
+			} else if(now < close){
+				close = now;
+			}
+		}
+	}
+	/*int big = (close * 100000);
+	if(big % 10 >= 5){
+		big /= 10;
+		big++;
+	}else if(big % 10 < 5){
+		big /= 10;
+	}
+	close = big;
+	close /= 10000;*/
+	printf("%.4f", close);
+	return 0;
+}
