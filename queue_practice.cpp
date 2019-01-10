@@ -6,7 +6,6 @@ struct node{
 	node *next;
 };
 node* createNode(int);
-//void pop();
 node* push(node *ptr , int);
 void printlist(node *head, node *ptr);
 
