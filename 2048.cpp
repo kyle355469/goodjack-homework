@@ -18,6 +18,7 @@ void right();                // 右
 void left();                 // 左 
 int block[4][4] = {0};
 int checkblock[4][4] = {0};
+int point = 0;
 void copy();                 // 複製到 checkbolock  
 void Align_display();        // 顯示+對齊 
 int win();                 // 勝利判斷 
@@ -55,9 +56,9 @@ int main(){
 			Align_display();
 			judgment = win();
 			if(judgment == 0){
-				cout << "win";
+				cout << "\nwin";
 			}else if(judgment == 1){
-				cout << "bye bye";
+				cout << "\nbye bye";
 			}
 		}	
 	}
@@ -91,6 +92,7 @@ void Align_display(){
         }
         cout << endl;
     }
+    cout << "\n 分數：" << point; 
 }
 void copy(){
 	for (int x = 0; x < 4; x++) {
@@ -116,6 +118,7 @@ void up(){
 	for(int x = 0; x < 3; x++){
 		for(int y = 0; y < 4; y++){
 			if(block[x+1][y] == block[x][y]){
+				point += block[x][y];
 				block[x][y] += block[x+1][y];
 				block[x+1][y] = 0; 
 			}
@@ -160,6 +163,7 @@ void down(){
 	for(int x = 3; x > 0; x--){
 		for(int y = 0; y < 4; y++){
 			if(block[x][y] == block[x-1][y]){
+				point += block[x][y];
 				block[x][y] += block[x-1][y];
 				block[x-1][y] = 0; 
 			}
@@ -203,6 +207,7 @@ void right(){
 	for(int x = 0; x < 4; x++){
 		for(int y = 3; y > 0; y--){
 			if(block[x][y] == block[x][y-1]){
+				point += block[x][y];
 				block[x][y] += block[x][y-1];
 				block[x][y-1] = 0; 
 			}
@@ -245,9 +250,10 @@ void left(){
 	}
 	for(int x = 0; x < 4; x++){
 		for(int y = 0; y < 3; y++){
-			if(block[x][y] == block[x][y+1]){
+			if(block[x][y] == block[x][y+1]){ 
+				point += block[x][y];
 				block[x][y] += block[x][y+1];
-				block[x][y+1] = 0; 
+				block[x][y+1] = 0;
 			}
 		}
 	}
