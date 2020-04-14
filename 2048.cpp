@@ -16,9 +16,12 @@ void up();	                 // 上
 void down();                 // 下 
 void right();                // 右 
 void left();                 // 左 
+void winfin();
+void losefin();
 int block[4][4] = {0};
 int checkblock[4][4] = {0};
 int point = 0;
+int check = 3;
 void copy();                 // 複製到 checkbolock  
 void Align_display();        // 顯示+對齊 
 int win();                 // 勝利判斷 
@@ -54,12 +57,16 @@ int main(){
 					break;
 			}
 			Align_display();
-			judgment = win();
-			if(judgment == 0){
-				cout << "\nwin";
-			}else if(judgment == 1){
-				cout << "\nbye bye";
+			
+			check = win();
+			if(check == 0){
+				winfin();
+				break;
+			}else if(check == 1){
+				losefin();
+				break;
 			}
+			cout << "\n 分數：" << point; 
 		}	
 	}
 	
@@ -90,9 +97,8 @@ void Align_display(){
         for (int y = 0; y < 4; y++) {
            	cout << setw(5) << block[x][y];
         }
-        cout << endl;
+        cout << "\n\n";
     }
-    cout << "\n 分數：" << point; 
 }
 void copy(){
 	for (int x = 0; x < 4; x++) {
@@ -143,6 +149,7 @@ void up(){
 			}	
 		}
 	}
+	
 	if(add != 0){
 		newnum();
 	}
@@ -187,6 +194,7 @@ void down(){
 			}	
 		}
 	}
+	
 	if(add != 0){
 		newnum();
 	}
@@ -231,6 +239,7 @@ void right(){
 			}	
 		}
 	}
+	
 	if(add != 0){
 		newnum();
 	}
@@ -283,24 +292,30 @@ int win(){
 	int full = 1;          // 0未滿 1滿 
 	for(int  x = 0; x < 4; x++){
 		for(int y = 0; y < 4; y++){
+			if(block[x][y] == 64){
+				return 0;
+			}
+		} 
+	}
+	for(int x = 0; x < 4; x++){
+		for(int y = 0; y < 4; y++){
 			if(block[x][y] == 0){
 				full = 0;
-				break;
 			}
 		} 
 	}
 	if(full == 1){
-		for(int x = 0; x < 4; x++){
-			for(int y = 0; y < 4; y++){
-				if(block[x][y] == 2048){
-					return 0;
-				}else if(full == 1){
-					return 1;
-				}	
-			}
-		}
+		return 1;
 	}
 	return 3;
+}
+
+void winfin(){
+	cout << "\n You Win\n Your grade is : " << point; 
+}
+
+void losefin(){
+	cout << "\n Your lose, keep working\n Your grade is : " << point;
 }
 
 /*void gotoxy(int xpos, int ypos)
